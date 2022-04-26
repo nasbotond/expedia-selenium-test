@@ -13,25 +13,16 @@ public class HomePage extends BasePage {
     private final By signInTabLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/button");
     private final By signInButtonLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/div/div[2]/a");
     private final By loggedInTextLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/button/div");
+    private final By signOutButtonLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/div/div[5]/a");
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
-    /**
-    * Get message (h1 tag)
-    *
-    * @return String message text
-    */
     public String getLoggedInText() {
         WebElement loggedInText = waitVisibiltyAndFindElement(loggedInTextLocator);
         return loggedInText.getText();
     }
-
-    // public HomePage manageProfile() {
-    //     // Page encapsulation to manage profile functionality
-    //     return new HomePage(driver);
-    // }
 
     public void originTextBoxField(String origin) {
         WebElement leavingFromInput = waitVisibiltyAndFindElement(leavingFromInputLocator);
@@ -41,7 +32,6 @@ public class HomePage extends BasePage {
     public SignInPage signInButton() {
         WebElement signInButton = waitVisibiltyAndFindElement(signInButtonLocator);
         signInButton.click();
-        // signInButton.click();
         return new SignInPage(driver);
     }
 
@@ -49,6 +39,17 @@ public class HomePage extends BasePage {
         WebElement signInTab = waitVisibiltyAndFindElement(signInTabLocator);
         signInTab.click();
         signInTab.click();
+    }
+
+    public void signOutTab() {
+        WebElement signOutTab = waitVisibiltyAndFindElement(signInTabLocator);
+        signOutTab.click();
+    }
+
+    public HomePage signOutButton() {
+        WebElement signOutButton = waitVisibiltyAndFindElement(signOutButtonLocator);
+        signOutButton.click();
+        return new HomePage(driver);
     }
 
     public void leavingFromButton() {
