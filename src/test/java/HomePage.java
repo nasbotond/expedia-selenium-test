@@ -4,10 +4,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.openqa.selenium.support.ui.*;
 
-public class HomePage {
-    
-    protected WebDriver driver;
-    Utilities utilities = new Utilities(driver);
+public class HomePage extends BasePage {
 
     private final By flightsButtonLocator = By.xpath("//*[@id='wizardMainRegionV2']/div/div/div/div/ul/li[2]/a");
     private final By hotelsButtonLocator = By.xpath("//a[@href='?pwaLob=wizard-flight-pwa']");
@@ -18,11 +15,7 @@ public class HomePage {
     private final By loggedInTextLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/button/div");
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
-        // if (!driver.getTitle().equals("Home Page of logged in user")) {
-        //   throw new IllegalStateException("This is not Home Page of logged in user," +
-        //         " current page is: " + driver.getCurrentUrl());
-        // }
+        super(driver);
     }
 
     /**
@@ -31,7 +24,7 @@ public class HomePage {
     * @return String message text
     */
     public String getLoggedInText() {
-        WebElement loggedInText = utilities.waitVisibiltyAndFindElement(driver, loggedInTextLocator);
+        WebElement loggedInText = waitVisibiltyAndFindElement(loggedInTextLocator);
         return loggedInText.getText();
     }
 
@@ -41,35 +34,35 @@ public class HomePage {
     // }
 
     public void originTextBoxField(String origin) {
-        WebElement leavingFromInput = utilities.waitVisibiltyAndFindElement(driver, leavingFromInputLocator);
+        WebElement leavingFromInput = waitVisibiltyAndFindElement(leavingFromInputLocator);
         leavingFromInput.sendKeys(origin);
     }
 
     public SignInPage signInButton() {
-        WebElement signInButton = utilities.waitVisibiltyAndFindElement(driver, signInButtonLocator);
+        WebElement signInButton = waitVisibiltyAndFindElement(signInButtonLocator);
         signInButton.click();
         // signInButton.click();
         return new SignInPage(driver);
     }
 
     public void signInTab() {
-        WebElement signInTab = utilities.waitVisibiltyAndFindElement(driver, signInTabLocator);
+        WebElement signInTab = waitVisibiltyAndFindElement(signInTabLocator);
         signInTab.click();
         signInTab.click();
     }
 
     public void leavingFromButton() {
-        WebElement leavingFromButton = utilities.waitVisibiltyAndFindElement(driver, leavingFromButtonLocator);
+        WebElement leavingFromButton = waitVisibiltyAndFindElement(leavingFromButtonLocator);
         leavingFromButton.click();
     }
 
     public void flightButton() {
-        WebElement flightButton = utilities.waitVisibiltyAndFindElement(driver, flightsButtonLocator);
+        WebElement flightButton = waitVisibiltyAndFindElement(flightsButtonLocator);
         flightButton.click();
     }
 
     public void hotelsButton() {
-        WebElement hotelsButton = utilities.waitVisibiltyAndFindElement(driver, hotelsButtonLocator);
+        WebElement hotelsButton = waitVisibiltyAndFindElement(hotelsButtonLocator);
         hotelsButton.click();
     }
 }

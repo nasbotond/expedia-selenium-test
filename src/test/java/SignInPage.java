@@ -1,9 +1,6 @@
 import org.openqa.selenium.*;
 
-public class SignInPage {
-
-  protected WebDriver driver;
-  Utilities utilities = new Utilities(driver);
+public class SignInPage extends BasePage{
 
   private By emailInputLocator = By.xpath("//*[@id='loginFormEmailInput']");
   private By passwordInputLocator = By.xpath("//*[@id='loginFormPasswordInput']");
@@ -11,7 +8,7 @@ public class SignInPage {
   private By pageBodyLocator = By.xpath("//*[@id='app-layer-base']/div/main");
 
   public SignInPage(WebDriver driver) {
-    this.driver = driver;
+    super(driver);
   }
 
   /**
@@ -22,21 +19,21 @@ public class SignInPage {
   * @return HomePage object
   */
   public HomePage loginValidUser(String email, String password) {
-    utilities.waitVisibiltyAndFindElement(driver, emailInputLocator).sendKeys(email);
-    utilities.waitVisibiltyAndFindElement(driver, passwordInputLocator).sendKeys(password);
-    utilities.waitVisibiltyAndFindElement(driver, signInButtonLocator).click();
+    waitVisibiltyAndFindElement(emailInputLocator).sendKeys(email);
+    waitVisibiltyAndFindElement(passwordInputLocator).sendKeys(password);
+    waitVisibiltyAndFindElement(signInButtonLocator).click();
     return new HomePage(driver);
   }
 
   public SignInPage loginInvalidUser(String email, String password) {
-    utilities.waitVisibiltyAndFindElement(driver, emailInputLocator).sendKeys(email);
-    utilities.waitVisibiltyAndFindElement(driver, passwordInputLocator).sendKeys(password);
-    utilities.waitVisibiltyAndFindElement(driver, signInButtonLocator).click();
+    waitVisibiltyAndFindElement(emailInputLocator).sendKeys(email);
+    waitVisibiltyAndFindElement(passwordInputLocator).sendKeys(password);
+    waitVisibiltyAndFindElement(signInButtonLocator).click();
     return this;
   }
 
   public Boolean isIncorrectUsernameOrPassword() {
-    WebElement pageBody = utilities.waitVisibiltyAndFindElement(driver, pageBodyLocator);
+    WebElement pageBody = waitVisibiltyAndFindElement(pageBodyLocator);
     return !pageBody.getText().contains("Email and password don't match. Try again.");
   }
 

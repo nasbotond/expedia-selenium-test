@@ -1,5 +1,3 @@
-import org.junit.*;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -7,28 +5,24 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.support.ui.*;
 
 public class BasePage {
+    
+    protected WebDriver driver;
+    protected WebDriverWait wait;
 
-    public WebDriver driver;
-    private WebDriverWait wait;
-    private String baseUrl;
-    public HomePage homePage;
+    protected final By bodyLocator = By.tagName("body");
 
-    @Before
-    public void setUp(){
-        baseUrl = "https://www.expedia.com";        
-
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        homePage = new HomePage(driver);
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, 10);
-        driver.get(baseUrl);
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+        this.wait = new WebDriverWait(driver, 10);
     }
 
-    @After
-    public void close() {
-        if (driver != null) {
-            driver.quit();
-        }
+    protected WebElement waitVisibiltyAndFindElement(By locator) {
+        this.wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return this.driver.findElement(locator);
+    }
+
+    public String getBodyText() {
+        WebElement resultElement = this.waitVisibiltyAndFindElement(bodyLocator);
+        return resultElement.getText();
     }
 }
