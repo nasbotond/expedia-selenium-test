@@ -15,6 +15,7 @@ public class HomePage {
     private final By leavingFromInputLocator = By.xpath("//*[@id='location-field-leg1-origin']");
     private final By signInTabLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/button");
     private final By signInButtonLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/div/div[2]/a");
+    private final By loggedInTextLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/button/div");
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
@@ -29,9 +30,10 @@ public class HomePage {
     *
     * @return String message text
     */
-    // public String getMessageText() {
-    //     return driver.findElement(messageBy).getText();
-    // }
+    public String getLoggedInText() {
+        WebElement loggedInText = utilities.waitVisibiltyAndFindElement(driver, loggedInTextLocator);
+        return loggedInText.getText();
+    }
 
     // public HomePage manageProfile() {
     //     // Page encapsulation to manage profile functionality
