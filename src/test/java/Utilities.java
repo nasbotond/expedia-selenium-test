@@ -1,10 +1,9 @@
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Utilities {
+    
     WebDriver driver;
 
     public Utilities(WebDriver driver) {

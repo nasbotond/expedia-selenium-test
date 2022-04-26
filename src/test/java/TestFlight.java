@@ -1,19 +1,9 @@
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-
 import org.junit.*;
-
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.*;
-import io.github.bonigarcia.wdm.WebDriverManager;
-
-import org.openqa.selenium.support.ui.*;
-
 import java.util.concurrent.TimeUnit;
 
 public class TestFlight extends BasePage {
 
-    public void setUp(){
+    public void setUp() {
         super.setUp();
     }
 

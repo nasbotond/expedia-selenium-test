@@ -1,7 +1,7 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 public class SignInPage {
+  
   protected WebDriver driver;
   Utilities utilities = new Utilities(driver);
 
@@ -9,7 +9,7 @@ public class SignInPage {
   private By passwordInputLocator = By.xpath("//*[@id='loginFormPasswordInput']");
   private By signInButtonLocator = By.xpath("//*[@id='loginFormSubmitButton']");
 
-  public SignInPage(WebDriver driver){
+  public SignInPage(WebDriver driver) {
     this.driver = driver;
   }
 
