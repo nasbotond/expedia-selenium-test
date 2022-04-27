@@ -23,6 +23,7 @@ public class BaseTest {
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, 10);
         driver.get(baseUrl);
+        // System.out.println("Page title is : " + driver.getTitle());
     }
 
     @After

@@ -13,12 +13,17 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 10);
+        this.wait = new WebDriverWait(driver, 60);
     }
 
     protected WebElement waitVisibiltyAndFindElement(By locator) {
         this.wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         return this.driver.findElement(locator);
+    }
+
+    public String getTitleText() {
+        // WebElement resultElement = this.waitVisibiltyAndFindElement(bodyLocator);
+        return this.driver.getTitle();
     }
 
     public String getBodyText() {

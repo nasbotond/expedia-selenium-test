@@ -14,6 +14,7 @@ public class HomePage extends BasePage {
     private final By signInButtonLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/div/div[2]/a");
     private final By loggedInTextLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/button/div");
     private final By signOutButtonLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/div/div[5]/a");
+    private final By tripsTabLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/a[3]");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -65,5 +66,11 @@ public class HomePage extends BasePage {
     public void hotelsButton() {
         WebElement hotelsButton = waitVisibiltyAndFindElement(hotelsButtonLocator);
         hotelsButton.click();
+    }
+
+    public TripsPage tripsTab() {
+        WebElement tripsTab = waitVisibiltyAndFindElement(tripsTabLocator);
+        tripsTab.click();
+        return new TripsPage(driver);
     }
 }
