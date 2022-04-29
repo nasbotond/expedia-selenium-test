@@ -37,5 +37,5 @@ public class HomePageTest extends BaseTest {
             correct = correct || !pageTitle.contains("Expedia Travel: Vacation Homes, Hotels, Car Rentals, Flights & More");
         }
         Assert.assertFalse(correct);
-    }    
+    }
 }

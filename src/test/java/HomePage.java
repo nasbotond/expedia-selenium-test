@@ -13,6 +13,7 @@ public class HomePage extends BasePage {
     private final By leavingFromInputLocator = By.xpath("//*[@id='location-field-leg1-origin']");
     private final By signInTabLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/button");
     private final By signInButtonLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/div/div[2]/a");
+    private final By signUpButtonLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/div/div[3]/a");
     private final By loggedInTextLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/button/div");
     private final By signOutButtonLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/div/div[5]/a");
     private final By tripsTabLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/a[3]");
@@ -37,6 +38,12 @@ public class HomePage extends BasePage {
         WebElement signInButton = waitVisibiltyAndFindElement(signInButtonLocator);
         signInButton.click();
         return new SignInPage(driver);
+    }
+
+    public SignUpPage signUpButton() {
+        WebElement signUpButton = waitVisibiltyAndFindElement(signUpButtonLocator);
+        signUpButton.click();
+        return new SignUpPage(driver);
     }
 
     public void signInTab() {
