@@ -1,6 +1,7 @@
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.util.*;
 
 import org.openqa.selenium.support.ui.*;
 
@@ -15,6 +16,8 @@ public class HomePage extends BasePage {
     private final By loggedInTextLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/button/div");
     private final By signOutButtonLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/div/div/div[5]/a");
     private final By tripsTabLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/a[3]");
+    private final By languageSelectorTabLocator = By.xpath("//*[@id='app-layer-base']/div[1]/div[1]/header/div/div/div[2]/button");
+    private final By languageSelectElementLocator = By.xpath("//*[@id='site-selector']");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -72,5 +75,20 @@ public class HomePage extends BasePage {
         WebElement tripsTab = waitVisibiltyAndFindElement(tripsTabLocator);
         tripsTab.click();
         return new TripsPage(driver);
+    }
+
+    public Select languageSelectorDialog() {
+        WebElement languageSelectorTab = waitVisibiltyAndFindElement(languageSelectorTabLocator);
+        languageSelectorTab.click();
+        WebElement languageSelectElement = waitVisibiltyAndFindElement(languageSelectElementLocator);
+        Select languageSelect = new Select(languageSelectElement);
+        return languageSelect;
+    }
+
+    public String getSelectedCountry() {
+        WebElement languageSelectElement = waitVisibiltyAndFindElement(languageSelectElementLocator);
+        Select languageSelect = new Select(languageSelectElement);
+        WebElement firstSelectedOption = languageSelect.getFirstSelectedOption();
+        return firstSelectedOption.getText();
     }
 }
